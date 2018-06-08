@@ -19,7 +19,7 @@ import os
 import re
 
 class kicad_wrapper(object):
-    
+
     def __init__(self, filepath):
 
         # Validate and store file
@@ -38,7 +38,7 @@ class kicad_wrapper(object):
 
         # Kick off control flow
         self.lines = self.readFile()
-    
+
     def readFile(self):
         '''
             For now, as this is a human readable file we will simply read the file into
@@ -46,8 +46,8 @@ class kicad_wrapper(object):
         '''
         with open(self.filepath) as kidcad_file:
             return kicad_file.read().split(',')
-    
-    
+
+
     # Define other high level methods required for processing, for example, the function
     # to iterate over the lines and build the required objects for each section
     def parse_components(self):
@@ -55,6 +55,21 @@ class kicad_wrapper(object):
         # The type of object to build ( regex is fairly robust )
         regex_map = {
             'Regular expression' : "object type that should be build from this line or set of lines"
+            '(module'            : "create a new component"
+            '(descr'             : "Descriptiuon of the module, "
+            '(fp_text reference' : "Conponent annotation"
+            '(fp_text value'     : "Component Value"    #This cpould have many meaning: eg 10pF or Conn02x24
+            '(fp_line'           : "Lines which could be a useful fiducial"
+            '(pad'               : "A pad is being defined"
+            '(at'                : "Location of feature"
+            '(segment'           : "Trace"
+            '(via'               : "Via"
+            '(gr_line'           : "Graphics line that has been explicitly drawn"
+            '(gr_circle'         : "Graphics circle"
+            '(gr_text'           : "Graphics text"
+            '(layers'            : "Lists layers relevant to a feature"
+            '(start'             : "Start of a feature"
+            '(end'               : "End of a feature"
         }
         # Iterate over lines in file
         for line in lines:
@@ -67,13 +82,21 @@ class kicad_wrapper(object):
 
 
 
-class component_object(object):
+class component_object(object, KiCADObj, Ref):
     # super constructor
     def __init__(self):
         # Define whatever attributes every object will require
         self.location = [0,0]
         self.units = 'mm'
-    
+
+     def find_Annotate(self, Ref):
+         line = KiCADObj.lines(Ref)
+         annotatipon = []
+         for i in len(line):
+            if line[i+22] == ' '
+                break
+            annotation.append(line[i+22])
+         return str(annotation)
 
     # Define whatever methods everything will need
     def aMethod(self):

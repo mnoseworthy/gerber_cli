@@ -172,6 +172,9 @@ file_extensions = {
         "-F_SilkS.gbr"  : "top_silkscreen"    ,
         "-B_SilkS.gbr"  : "bottom_silkscreen" ,
         ".drl"          : "nc_drill"
+    },
+    'IPCD365' : {
+        ".d365" :   "IPCD365"
     }
 }
         
