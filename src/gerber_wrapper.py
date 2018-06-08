@@ -45,7 +45,3 @@ class gerber_wrapper():
         # Output
         ctx.dump(output)
         return output
-
-
-
-        
