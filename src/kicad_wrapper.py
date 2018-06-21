@@ -121,4 +121,4 @@ class resistor(component_object):
 # program control flow
 if __name__ == "__main__":
     wrapper = new gerber_wrapper()
-    wrapper.serial_parse() # Or whatever method you need to 
+    wrapper.serial_parse() # Or whatever method you need to execute
