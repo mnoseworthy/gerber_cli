@@ -91,7 +91,7 @@ def convert_with_inkscape(args):
     subprocess.check_call(args)
 
 
-def test_output():
+def test_output(filepath):
 
     padshapes = {
         pcbnew.PAD_SHAPE_CIRCLE:  "PAD_SHAPE_CIRCLE",
@@ -105,7 +105,7 @@ def test_output():
 
 
     board = pcbnew.BOARD()
-    board = pcbnew.LoadBoard("/home/matt/Desktop/projects/Ganglion_Hardware_Design_Files/Ganglion_KiCad_Files/Ganglion_01.kicad_pcb")
+    board = pcbnew.LoadBoard(filepath)
 
 
     boardbbox = board.ComputeBoundingBox()
@@ -218,8 +218,10 @@ def test_output():
         'boardheight' : boardheight,
         'svg' : 'output.png'
     }
-    
 
+
+if __name__ == "__main__":
+    test_output("/home/matt/Desktop/projects/Ganglion_Hardware_Design_Files/Ganglion_KiCad_Files/Ganglion_01.kicad_pcb")
 
 
    
